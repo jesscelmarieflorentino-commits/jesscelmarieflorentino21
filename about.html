@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>jesscel.com</title>
+<meta name="description" content="jesscel.com - a little corner of the internet.">
+<meta property="og:title" content="jesscel.com">
+<meta property="og:site_name" content="jesscel.com">
+<meta property="og:description" content="a little corner of the internet.">
+<meta name="application-name" content="jesscel.com">
+<meta name="color-scheme" content="dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#000;--paper:#f4f4f4;--ash:#9a9a9a;--smoke:#2a2a2a;--bone:#d8d8d8;
+  --logo:"Pirata One","UnifrakturCook","Old English Text MT",Georgia,serif;
+  --body:"Special Elite","Courier New",Courier,monospace;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px);color-scheme:dark}
+body{margin:0;background:var(--ink);color:var(--bone);font:15px/1.65 var(--body);position:relative;overflow-x:hidden}
+body::before{ /* distressed grain */
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.22;mix-blend-mode:screen;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 2.2 -1.1'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+a{color:var(--paper);text-decoration:underline dotted var(--ash);text-underline-offset:3px}
+a:hover,a:focus-visible{color:var(--ink);background:var(--paper);text-decoration:none}
+a:focus-visible,button:focus-visible{outline:2px dashed var(--paper);outline-offset:3px}
+#sky{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+#sky span{position:absolute;color:var(--paper);opacity:.0;animation:drift linear infinite}
+@keyframes drift{0%{transform:translate(0,-6vh) rotate(0);opacity:0}10%{opacity:.8}90%{opacity:.5}100%{transform:translate(var(--dx),108vh) rotate(260deg);opacity:0}}
+.wrap{position:relative;z-index:2;max-width:1060px;margin:0 auto;padding:0 14px 30px}
+
+/* banner */
+.banner{position:relative;text-align:center;padding:34px 10px 22px;border-bottom:3px double var(--paper);
+  background:radial-gradient(ellipse at 50% 0,#1b1b1b 0,#000 70%)}
+.banner .deco{color:var(--ash);letter-spacing:.6em;font-size:14px}
+.logo{display:inline-block;font-family:var(--logo);font-weight:400;font-size:clamp(52px,13vw,128px);line-height:1;
+  color:var(--paper);text-decoration:none;position:relative;margin:6px 0 2px;
+  text-shadow:2px 0 #555,-2px 0 #333,0 0 18px rgba(255,255,255,.35);letter-spacing:.02em}
+.logo:hover,.logo:focus-visible{background:none;color:var(--paper);animation:glitch .35s steps(2) 2}
+@keyframes glitch{0%{transform:translate(0)}25%{transform:translate(-3px,1px) skewX(-4deg)}50%{transform:translate(3px,-1px)}100%{transform:translate(0)}}
+.tag{margin:0;font-size:17px;color:var(--bone);letter-spacing:.08em}
+.tag::before{content:"\2726  ";color:var(--ash)}.tag::after{content:"  \2726";color:var(--ash)}
+.bat{display:inline-block;margin:0 8px;color:var(--ash)}
+
+nav{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 6px;margin:14px 0 0;padding:0;list-style:none}
+nav a{display:block;padding:3px 12px;border:1px solid var(--ash);text-decoration:none;font-size:14px}
+nav a.home{border-color:var(--paper);font-family:var(--logo);font-size:18px;line-height:1.3}
+
+/* columns */
+.cols{display:grid;grid-template-columns:230px minmax(0,1fr) 230px;gap:16px;margin-top:18px;align-items:start}
+.box{border:1px solid var(--paper);background:rgba(0,0,0,.82);margin-bottom:16px;position:relative}
+.box h2{margin:0;padding:4px 10px;background:var(--paper);color:var(--ink);font:400 20px/1.3 var(--logo);letter-spacing:.04em}
+.box .in{padding:10px 12px}
+.box.rough{border-style:dashed;border-color:var(--ash)}
+.box::after{content:"\2727";position:absolute;right:-7px;bottom:-12px;color:var(--paper);font-size:20px;background:var(--ink);line-height:1;padding:0 2px}
+.pic{aspect-ratio:1;border:1px solid var(--ash);margin-bottom:8px;display:grid;place-items:center;
+  background:repeating-linear-gradient(135deg,#111 0 6px,#000 6px 12px);color:var(--ash);text-align:center;font-size:13px;padding:10px}
+.pic b{display:block;font:400 54px/1 var(--logo);color:var(--paper)}
+dl{margin:0;font-size:13.5px}dt{color:var(--ash);float:left;clear:left;margin-right:6px}dd{margin:0 0 3px}
+ul.plain{margin:0;padding:0;list-style:none}
+ul.plain li{padding:3px 0;border-bottom:1px dotted var(--smoke)}
+ul.plain li:last-child{border:0}
+.post{margin-bottom:22px;padding-bottom:16px;border-bottom:1px dashed var(--ash)}
+.post:last-child{border:0;margin:0;padding:0}
+.post h3{margin:0 0 2px;font:400 28px/1.15 var(--logo);color:var(--paper)}
+.meta{font-size:12.5px;color:var(--ash);margin:0 0 8px}
+.post p{margin:0 0 10px;max-width:68ch}
+.mood{font-style:italic;color:var(--ash)}
+.friends{display:grid;grid-template-columns:1fr 1fr;gap:8px;text-align:center;font-size:12.5px}
+.friends .pic{font-size:22px;margin:0 0 2px;padding:0;color:var(--paper)}
+.player{border:1px solid var(--ash);padding:8px;font-size:13px}
+.bar{height:6px;background:var(--smoke);margin:6px 0}.bar i{display:block;height:100%;width:38%;background:var(--paper)}
+.gb p{margin:0 0 8px;font-size:13.5px;border-left:2px solid var(--ash);padding-left:8px}
+.gb small{color:var(--ash)}
+.count{text-align:center;font:400 22px var(--logo);letter-spacing:.1em}
+
+footer{position:relative;z-index:2;text-align:center;border-top:3px double var(--paper);padding:18px 10px 26px;font-size:13px;color:var(--ash);background:var(--ink)}
+footer a.fl{font-family:var(--logo);font-size:20px;color:var(--paper)}
+footer .deco{letter-spacing:.5em;margin-bottom:6px}
+
+@media (max-width:860px){
+  .cols{grid-template-columns:1fr}
+  .box::after{right:6px;bottom:-14px}
+  .side-left{order:2}.main{order:1}.side-right{order:3}
+}
+@media (prefers-reduced-motion:reduce){
+  #sky span{animation:none;opacity:.5}
+  .logo:hover,.logo:focus-visible{animation:none}
+}
+</style>
+</head>
+<body>
+<div id="sky" aria-hidden="true"></div>
+<div class="wrap">
+
+<header class="banner" id="top">
+  <div class="deco" aria-hidden="true">&#10022; &#9733; &#10023; &#9733; &#10022;</div>
+  <a class="logo" href="#top" aria-label="jesscel.com - back to homepage">jesscel.com</a>
+  <p class="tag">a little corner of the internet.</p>
+  <div class="deco" aria-hidden="true"><span class="bat">&#10023;</span>&#9790; &#9733; &#9789;<span class="bat">&#10023;</span></div>
+  <ul class="nav-list" style="padding:0;margin:0">
+  <li style="list-style:none">
+  <nav aria-label="Main">
+    <a class="home" href="#top">jesscel.com</a>
+    <a href="#about">about me</a>
+    <a href="#blog">blog</a>
+    <a href="#photos">photos</a>
+    <a href="#music">music</a>
+    <a href="#guestbook">guestbook</a>
+    <a href="#links">links</a>
+  </nav></li></ul>
+</header>
+
+<div class="cols">
+
+  <aside class="side-left" id="photos">
+    <section class="box">
+      <h2>&#9733; jess</h2>
+      <div class="in">
+        <div class="pic"><div><b>&#9790;</b>your photo here</div></div>
+        <p class="mood">mood: listening to the rain</p>
+        <dl>
+          <dt>online:</dt><dd>always, sadly</dd>
+          <dt>from:</dt><dd>the back row</dd>
+          <dt>likes:</dt><dd>thrifted band tees, black nail polish, mixtapes, 3am</dd>
+          <dt>joined:</dt><dd>2026</dd>
+        </dl>
+      </div>
+    </section>
+    <section class="box rough">
+      <h2>&#10022; contacting</h2>
+      <div class="in"><ul class="plain">
+        <li><a href="#guestbook">sign the guestbook</a></li>
+        <li><a href="#top">add to friends</a></li>
+        <li><a href="#top">send a message</a></li>
+      </ul></div>
+    </section>
+    <section class="box">
+      <h2>&#10023; visitors</h2>
+      <div class="in count">000,0<span id="n">13</span></div>
+    </section>
+  </aside>
+
+  <main class="main" id="blog">
+    <section class="box">
+      <h2>&#9733; welcome to jesscel.com</h2>
+      <div class="in">
+        <p>hi. you found it. this is my little corner: bad poetry, good songs, and whatever i feel like putting in the dark. grab a seat, leave a comment, take what you need.</p>
+        <p class="mood">&#10022; currently: rearranging my top 8 for the fifth time &#10022;</p>
+      </div>
+    </section>
+    <section class="box" id="about">
+      <h2>&#9790; about me</h2>
+      <div class="in">
+        <p>hey, i'm jess. night owl, collector of mixtapes, professional overthinker. i made jesscel.com because i missed when the internet felt like somebody's bedroom wall: messy, personal, and covered in things they loved.</p>
+        <p>i write bad poetry, make playlists for moods that don't have names, and take too many blurry photos at shows. if you're here, you're probably a little like me.</p>
+        <dl>
+          <dt>name:</dt><dd>jesscel marie florentino</dd>
+          <dt>age:</dt><dd>25</dd>
+          <dt>sign:</dt><dd>libra(obviously)</dd>
+          <dt>status:</dt><dd>single, </dd>
+          
+          <dt>songs on repeat:</dt><dd>anything that sounds like a late-night drive</dd>
+          <dt>movies:</dt><dd>barcelona by kathryn bernardo and daniel padilla </dd>
+          <dt>hobbies:</dt><dd>playing volleyball and sleeping</dd>
+          <dt>heroes:</dt><dd>anyone who makes things in the dark</dd>
+          <dt>mood:</dt><dd>listening music</dd>
+        </dl>
+        <p class="mood">&#10022; thanks for stopping by. stay a while. &#10022;</p>
+      </div>
+    </section>
+    <
+          <p><a href="#guestbook">12 comments</a></p>
+        </article>
+        <article class="post">
+          <h3>the mixtape is finally done</h3>
+          <p class="meta">posted last week &middot; mood: sparkly-dead</p>
+          <p>fourteen songs, one burned cd, sharpie on the label. sequencing took longer than the songs deserve. track 6 is the one. you'll know.</p>
+          <p><a href="#music">hear a preview</a></p>
+        </article>
+        <article class="post">
+          <h3>things i'm keeping in my pockets</h3>
+          <p class="meta">posted a while ago &middot; mood: soft</p>
+          <p>a guitar pick, two safety pins, a ticket stub with the ink rubbed off, a note that just says "call me back." the pockets are full. the heart is workable.</p>
+          <p><a href="#guestbook">7 comments</a></p>
+        </article>
+      </div>
+    </section>
+    <section class="box gb" id="guestbook">
+      <h2>&#10022; guestbook</h2>
+      <div class="in">
+        <p>love the stars!! this site is a whole mood. <small>- v. at 11:02pm</small></p>
+        <p>listened to the playlist twice already. rip my sleep. <small>- ghost_kid at 1:15am</small></p>
+        <p>never take this down please. <small>- anon</small></p>
+      </div>
+    </section>
+  </main>
+
+  <aside class="side-right">
+    <section class="box" id="music">
+      <h2>&#9835; now playing</h2>
+      <div class="in">
+        <div class="player">
+          <b>track 06</b><br>untitled, for the car ride
+          <div class="bar"><i></i></div>
+          <small>1:34 / 4:11 &#9654; &#10074;&#10074;</small>
+        </div>
+      </div>
+    </section>
+    <section class="box">
+      <h2>&#9733; top friends</h2>
+      <div class="in friends">
+        <div><div class="pic">&#9733;</div>v.</div>
+        <div><div class="pic">&#9790;</div>ghost_kid</div>
+        <div><div class="pic">&#10023;</div>mara</div>
+        <div><div class="pic">&#10022;</div>rue</div>
+      </div>
+    </section>
+    <section class="box rough" id="links">
+      <h2>&#10023; links</h2>
+      <div class="in"><ul class="plain">
+        <li><a href="#blog">read the blog</a></li>
+        <li><a href="#music">hear the mixtape</a></li>
+        <li><a href="#about">about me</a></li>
+        <li><a href="#guestbook">leave a comment</a></li>
+      </ul></div>
+    </section>
+  </aside>
+
+</div>
+</div>
+
+<footer>
+  <div class="deco" aria-hidden="true">&#10022; &#9733; &#10023; &#9733; &#10022;</div>
+  <a class="fl" href="#top">jesscel.com</a><br>
+  <span>&copy; 2026 jesscel.com</span>
+</footer>
+
+<script>
+(function(){
+  var sky=document.getElementById('sky'),g=['\u2726','\u2605','\u2727','\u00b7','\u2736','\u2729'];
+  for(var i=0;i<34;i++){
+    var s=document.createElement('span');
+    s.textContent=g[i%g.length];
+    s.style.left=(Math.random()*100)+'%';
+    s.style.top=(Math.random()*100)+'%';
+    s.style.fontSize=(8+Math.random()*14)+'px';
+    s.style.setProperty('--dx',(Math.random()*80-40)+'px');
+    s.style.animationDuration=(14+Math.random()*22)+'s';
+    s.style.animationDelay='-'+(Math.random()*30)+'s';
+    sky.appendChild(s);
+  }
+})();
+</script>
+</body>
+</html>

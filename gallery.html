@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>jesscel.com</title>
+<meta name="description" content="jesscel.com - a little corner of the internet.">
+<meta property="og:title" content="jesscel.com">
+<meta property="og:site_name" content="jesscel.com">
+<meta property="og:description" content="a little corner of the internet.">
+<meta name="application-name" content="jesscel.com">
+<meta name="color-scheme" content="dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#000;--paper:#f4f4f4;--ash:#9a9a9a;--smoke:#2a2a2a;--bone:#d8d8d8;
+  --logo:"Pirata One","UnifrakturCook","Old English Text MT",Georgia,serif;
+  --body:"Special Elite","Courier New",Courier,monospace;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px);color-scheme:dark}
+body{margin:0;background:var(--ink);color:var(--bone);font:15px/1.65 var(--body);position:relative;overflow-x:hidden}
+body::before{ /* distressed grain */
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.22;mix-blend-mode:screen;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 2.2 -1.1'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+a{color:var(--paper);text-decoration:underline dotted var(--ash);text-underline-offset:3px}
+a:hover,a:focus-visible{color:var(--ink);background:var(--paper);text-decoration:none}
+a:focus-visible,button:focus-visible{outline:2px dashed var(--paper);outline-offset:3px}
+#sky{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+#sky span{position:absolute;color:var(--paper);opacity:.0;animation:drift linear infinite}
+@keyframes drift{0%{transform:translate(0,-6vh) rotate(0);opacity:0}10%{opacity:.8}90%{opacity:.5}100%{transform:translate(var(--dx),108vh) rotate(260deg);opacity:0}}
+.wrap{position:relative;z-index:2;max-width:1060px;margin:0 auto;padding:0 14px 30px}
+
+/* banner */
+.banner{position:relative;text-align:center;padding:34px 10px 22px;border-bottom:3px double var(--paper);
+  background:radial-gradient(ellipse at 50% 0,#1b1b1b 0,#000 70%)}
+.banner .deco{color:var(--ash);letter-spacing:.6em;font-size:14px}
+.logo{display:inline-block;font-family:var(--logo);font-weight:400;font-size:clamp(52px,13vw,128px);line-height:1;
+  color:var(--paper);text-decoration:none;position:relative;margin:6px 0 2px;
+  text-shadow:2px 0 #555,-2px 0 #333,0 0 18px rgba(255,255,255,.35);letter-spacing:.02em}
+.logo:hover,.logo:focus-visible{background:none;color:var(--paper);animation:glitch .35s steps(2) 2}
+@keyframes glitch{0%{transform:translate(0)}25%{transform:translate(-3px,1px) skewX(-4deg)}50%{transform:translate(3px,-1px)}100%{transform:translate(0)}}
+.tag{margin:0;font-size:17px;color:var(--bone);letter-spacing:.08em}
+.tag::before{content:"\2726  ";color:var(--ash)}.tag::after{content:"  \2726";color:var(--ash)}
+.bat{display:inline-block;margin:0 8px;color:var(--ash)}
+
+nav{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 6px;margin:14px 0 0;padding:0;list-style:none}
+nav a{display:block;padding:3px 12px;border:1px solid var(--ash);text-decoration:none;font-size:14px}
+nav a.home{border-color:var(--paper);font-family:var(--logo);font-size:18px;line-height:1.3}
+
+/* columns */
+.cols{display:grid;grid-template-columns:230px minmax(0,1fr) 230px;gap:16px;margin-top:18px;align-items:start}
+.box{border:1px solid var(--paper);background:rgba(0,0,0,.82);margin-bottom:16px;position:relative}
+.box h2{margin:0;padding:4px 10px;background:var(--paper);color:var(--ink);font:400 20px/1.3 var(--logo);letter-spacing:.04em}
+.box .in{padding:10px 12px}
+.box.rough{border-style:dashed;border-color:var(--ash)}
+.box::after{content:"\2727";position:absolute;right:-7px;bottom:-12px;color:var(--paper);font-size:20px;background:var(--ink);line-height:1;padding:0 2px}
+.pic{aspect-ratio:1;border:1px solid var(--ash);margin-bottom:8px;display:grid;place-items:center;
+  background:repeating-linear-gradient(135deg,#111 0 6px,#000 6px 12px);color:var(--ash);text-align:center;font-size:13px;padding:10px}
+.pic b{display:block;font:400 54px/1 var(--logo);color:var(--paper)}
+dl{margin:0;font-size:13.5px}dt{color:var(--ash);float:left;clear:left;margin-right:6px}dd{margin:0 0 3px}
+ul.plain{margin:0;padding:0;list-style:none}
+ul.plain li{padding:3px 0;border-bottom:1px dotted var(--smoke)}
+ul.plain li:last-child{border:0}
+.post{margin-bottom:22px;padding-bottom:16px;border-bottom:1px dashed var(--ash)}
+.post:last-child{border:0;margin:0;padding:0}
+.post h3{margin:0 0 2px;font:400 28px/1.15 var(--logo);color:var(--paper)}
+.meta{font-size:12.5px;color:var(--ash);margin:0 0 8px}
+.post p{margin:0 0 10px;max-width:68ch}
+.mood{font-style:italic;color:var(--ash)}
+.friends{display:grid;grid-template-columns:1fr 1fr;gap:8px;text-align:center;font-size:12.5px}
+.friends .pic{font-size:22px;margin:0 0 2px;padding:0;color:var(--paper)}
+.player{border:1px solid var(--ash);padding:8px;font-size:13px}
+.bar{height:6px;background:var(--smoke);margin:6px 0}.bar i{display:block;height:100%;width:38%;background:var(--paper)}
+.gb p{margin:0 0 8px;font-size:13.5px;border-left:2px solid var(--ash);padding-left:8px}
+.gb small{color:var(--ash)}
+.count{text-align:center;font:400 22px var(--logo);letter-spacing:.1em}
+
+footer{position:relative;z-index:2;text-align:center;border-top:3px double var(--paper);padding:18px 10px 26px;font-size:13px;color:var(--ash);background:var(--ink)}
+footer a.fl{font-family:var(--logo);font-size:20px;color:var(--paper)}
+footer .deco{letter-spacing:.5em;margin-bottom:6px}
+
+@media (max-width:860px){
+  .cols{grid-template-columns:1fr}
+  .box::after{right:6px;bottom:-14px}
+  .side-left{order:2}.main{order:1}.side-right{order:3}
+}
+@media (prefers-reduced-motion:reduce){
+  #sky span{animation:none;opacity:.5}
+  .logo:hover,.logo:focus-visible{animation:none}
+}
+.vb-view{display:none}.vb-on .vb-view{display:block}.vb-on .cols{display:none}
+nav a[aria-current=page]{background:var(--paper);color:var(--ink)}
+.vb-head{text-align:center;padding:26px 8px 8px}
+.vb-label{margin:0;font-size:12px;letter-spacing:.2em;color:var(--ash)}
+.vb-head h2{margin:6px 0 0;font:400 clamp(36px,8vw,64px)/1.1 var(--logo);color:var(--paper);text-shadow:0 0 14px rgba(255,255,255,.3)}
+.vb-sub{margin:0;font-size:18px;letter-spacing:.1em}
+.vb-desc{max-width:56ch;margin:10px auto;color:var(--ash)}
+.vb-deco{color:var(--ash);letter-spacing:.5em;margin:6px 0 14px;border-bottom:3px double var(--ash);padding-bottom:14px}
+.vb-btn{font:inherit;background:#000;color:var(--paper);border:1px solid var(--paper);padding:5px 16px;cursor:pointer}
+.vb-btn:hover,.vb-btn:focus-visible{background:var(--paper);color:#000}
+#vbStatus{margin:12px 0 2px;font-family:var(--logo);font-size:22px;letter-spacing:.06em}
+#vbMsg{min-height:1.4em;margin:0;font-size:13px;color:var(--bone)}
+.vb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;list-style:none;margin:18px auto;padding:0 6px;max-width:780px}
+.vb-slot{position:relative;aspect-ratio:4/5;border:3px double var(--paper);padding:6px;background:#0b0b0b;box-shadow:0 0 16px rgba(255,255,255,.08);transition:transform .25s,box-shadow .25s}
+.vb-slot:nth-child(3n+1){transform:rotate(-1deg)}.vb-slot:nth-child(3n+2){transform:rotate(.7deg)}.vb-slot:nth-child(3n){transform:rotate(-.5deg)}
+.vb-slot.filled:hover,.vb-slot.filled:focus-within{transform:scale(1.03) rotate(0);box-shadow:0 0 22px rgba(255,255,255,.3)}
+.vb-slot::after{content:"\2726";position:absolute;left:3px;top:0;font-size:13px;color:var(--paper);text-shadow:0 0 3px #000;pointer-events:none}
+.vb-open{display:block;width:100%;height:100%;padding:0;border:0;background:none;cursor:zoom-in}
+.vb-open img{width:100%;height:100%;object-fit:cover;display:block}
+.vb-slot.broken .vb-open{background:repeating-linear-gradient(135deg,#111 0 6px,#000 6px 12px)}
+.vb-slot.broken img{visibility:hidden}
+.vb-empty{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;border:1px dashed var(--ash);background:none;color:var(--ash);font:13px var(--body);cursor:pointer;padding:6px}
+.vb-empty b{font:400 44px/1 var(--logo);color:var(--paper)}
+.vb-empty:hover,.vb-empty:focus-visible{color:var(--paper);border-color:var(--paper)}
+.vb-cap{position:absolute;left:6px;right:6px;bottom:6px;padding:2px 6px;background:rgba(0,0,0,.8);font-size:12px;opacity:0;transition:opacity .25s;pointer-events:none;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.vb-tools{position:absolute;top:6px;right:6px;display:flex;gap:3px;opacity:0;transition:opacity .25s}
+.vb-slot:hover .vb-cap,.vb-slot:focus-within .vb-cap,.vb-slot:hover .vb-tools,.vb-slot:focus-within .vb-tools{opacity:1}
+@media (hover:none){.vb-cap,.vb-tools{opacity:1}}
+.vb-tools button{width:30px;height:30px;background:rgba(0,0,0,.85);color:var(--paper);border:1px solid var(--paper);cursor:pointer;font-size:14px;padding:0}
+.vb-tools button:hover{background:var(--paper);color:#000}
+.vb-notes{text-align:center;color:var(--ash);font-size:13.5px;margin:10px 0}
+.vb-notes span{display:inline-block;margin:3px 10px;border-bottom:1px dotted var(--ash)}
+.vb-back{text-align:center;margin:18px 0 0}
+.vb-dlg{background:#000;color:var(--bone);border:3px double var(--paper);width:min(92vw,400px);font:14px var(--body);padding:14px}
+.vb-dlg::backdrop{background:rgba(0,0,0,.88)}
+.vb-dlg img{width:100%;max-height:45vh;object-fit:contain;display:block;margin:8px 0;border:1px solid var(--ash)}
+.vb-dlg input{width:100%;font:inherit;background:#000;color:var(--paper);border:1px solid var(--ash);padding:6px;margin:4px 0 12px}
+.vb-dlg p{margin:0;color:var(--ash)}
+.vb-lb{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.96);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:56px 56px 24px}
+.vb-lb[hidden]{display:none}
+.vb-lb::before,.vb-lb::after{position:absolute;color:var(--ash);font-size:18px;pointer-events:none}
+.vb-lb::before{content:"\2726  \263E";left:16px;top:14px}.vb-lb::after{content:"\263D  \2727";right:16px;bottom:12px}
+.vb-stage{flex:1;min-height:0;width:100%;display:flex;align-items:center;justify-content:center}
+#vbLbImg{max-width:calc(100vw - 112px);max-height:calc(100vh - 170px);object-fit:contain;border:1px solid var(--paper);box-shadow:0 0 34px rgba(255,255,255,.22)}
+#vbLbImg.in{animation:vbin .3s ease-out}
+@keyframes vbin{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
+.vb-lb figcaption{text-align:center;margin-top:10px}
+#vbLbNum{font-family:var(--logo);font-size:22px;letter-spacing:.1em}
+.vb-ar,.vb-x{position:absolute;background:#000;color:var(--paper);border:1px solid var(--paper);cursor:pointer;font-size:24px;width:48px;height:56px}
+.vb-ar{top:50%;margin-top:-28px}#vbLbPrev{left:4px}#vbLbNext{right:4px}
+.vb-x{top:calc(10px + env(safe-area-inset-top,0px));right:10px;height:48px}
+.vb-ar:hover,.vb-x:hover,.vb-ar:focus-visible,.vb-x:focus-visible{background:var(--paper);color:#000}
+@media (max-width:860px){.vb-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:480px){.vb-grid{gap:12px}.vb-lb{padding:56px 8px 20px}#vbLbImg{max-width:calc(100vw - 16px)}.vb-ar{opacity:.85;width:44px}}
+@media (prefers-reduced-motion:reduce){.vb-slot,.vb-cap,.vb-tools{transition:none}#vbLbImg.in{animation:none}.vb-slot.filled:hover{transform:none}}
+</style>
+</head>
+<body>
+<div id="sky" aria-hidden="true"></div>
+<div class="wrap">
+
+<header class="banner" id="top">
+  <div class="deco" aria-hidden="true">&#10022; &#9733; &#10023; &#9733; &#10022;</div>
+  <a class="logo" href="#top" aria-label="jesscel.com - back to homepage">jesscel.com</a>
+  <p class="tag">a little corner of the internet.</p>
+  <div class="deco" aria-hidden="true"><span class="bat">&#10023;</span>&#9790; &#9733; &#9789;<span class="bat">&#10023;</span></div>
+  <ul class="nav-list" style="padding:0;margin:0">
+  <li style="list-style:none">
+  <nav aria-label="Main">
+    <a class="home" href="#top">jesscel.com</a>
+    <a href="#about">about me</a>
+    <a href="#blog">blog</a>
+    <a href="#music">music</a>
+    <a href="#guestbook">guestbook</a>
+    <a href="#links">links</a>
+    <a href="#vision" id="navVision">&#10023; vision board</a>
+  </nav></li></ul>
+</header>
+
+<div class="cols">
+
+  <aside class="side-left" id="photos">
+    <section class="box">
+      <h2>&#9733; jess</h2>
+      <div class="in">
+        <div class="pic"><div><b>&#9790;</b>your photo here</div></div>
+        <p class="mood">mood: listening to the rain</p>
+        <dl>
+          <dt>online:</dt><dd>always, sadly</dd>
+          <dt>from:</dt><dd>the back row</dd>
+          <dt>likes:</dt><dd>thrifted band tees, black nail polish, mixtapes, 3am</dd>
+          <dt>joined:</dt><dd>2026</dd>
+        </dl>
+      </div>
+    </section>
+    <section class="box rough">
+      <h2>&#10022; contacting</h2>
+      <div class="in"><ul class="plain">
+        <li><a href="#guestbook">sign the guestbook</a></li>
+        <li><a href="#top">add to friends</a></li>
+        <li><a href="#top">send a message</a></li>
+      </ul></div>
+    </section>
+    <section class="box">
+      <h2>&#10023; visitors</h2>
+      <div class="in count">000,0<span id="n">13</span></div>
+    </section>
+  </aside>
+
+  <main class="main" id="blog">
+    <section class="box">
+      <h2>&#9733; welcome to jesscel.com</h2>
+      <div class="in">
+        <p>hi. you found it. this is my little corner: bad poetry, good songs, and whatever i feel like putting in the dark. grab a seat, leave a comment, take what you need.</p>
+        <p class="mood">&#10022; currently: rearranging my top 8 for the fifth time &#10022;</p>
+      </div>
+    </section>
+    <section class="box" id="about">
+      <h2>&#9790; about me</h2>
+      <div class="in">
+        <p>hey, i'm jess. night owl, collector of mixtapes, professional overthinker. i made jesscel.com because i missed when the internet felt like somebody's bedroom wall: messy, personal, and covered in things they loved.</p>
+        <p>i write bad poetry, make playlists for moods that don't have names, and take too many blurry photos at shows. if you're here, you're probably a little like me.</p>
+        <dl>
+          <dt>name:</dt><dd>jesscel marie florentino</dd>
+          <dt>age:</dt><dd>25</dd>
+          <dt>sign:</dt><dd>libra(obviously)</dd>
+          <dt>status:</dt><dd>single, </dd>
+          
+          <dt>songs on repeat:</dt><dd>anything that sounds like a late-night drive</dd>
+          <dt>movies:</dt><dd>barcelona by kathryn bernardo and daniel padilla </dd>
+          <dt>hobbies:</dt><dd>playing volleyball and sleeping</dd>
+          <dt>heroes:</dt><dd>anyone who makes things in the dark</dd>
+          <dt>mood:</dt><dd>listening music</dd>
+        </dl>
+        <p class="mood">&#10022; thanks for stopping by. stay a while. &#10022;</p>
+      </div>
+    </section>
+    <section class="box">
+      <h2>&#9790; blog</h2>
+      <div class="in">
+        <article class="post">
+          <h3>rainy bus rides &amp; borrowed headphones</h3>
+          <p class="meta">posted tonight at 2:47 am &middot; mood: static</p>
+          <p>the whole ride home the window was fogged and somebody’s drum fill leaked out of the earbuds next to me. i drew a star in the fog. it lasted about a minute. that was the best part of my day.</p>
+          <p><a href="#guestbook">12 comments</a></p>
+        </article>
+        <article class="post">
+          <h3>the mixtape is finally done</h3>
+          <p class="meta">posted last week &middot; mood: sparkly-dead</p>
+          <p>fourteen songs, one burned cd, sharpie on the label. sequencing took longer than the songs deserve. track 6 is the one. you'll know.</p>
+          <p><a href="#music">hear a preview</a></p>
+        </article>
+        <article class="post">
+          <h3>things i'm keeping in my pockets</h3>
+          <p class="meta">posted a while ago &middot; mood: soft</p>
+          <p>a guitar pick, two safety pins, a ticket stub with the ink rubbed off, a note that just says "call me back." the pockets are full. the heart is workable.</p>
+          <p><a href="#guestbook">7 comments</a></p>
+        </article>
+      </div>
+    </section>
+    <section class="box gb" id="guestbook">
+      <h2>&#10022; guestbook</h2>
+      <div class="in">
+        <p>love the stars!! this site is a whole mood. <small>- v. at 11:02pm</small></p>
+        <p>listened to the playlist twice already. rip my sleep. <small>- ghost_kid at 1:15am</small></p>
+        <p>never take this down please. <small>- anon</small></p>
+      </div>
+    </section>
+  </main>
+
+  <aside class="side-right">
+    <section class="box" id="music">
+      <h2>&#9835; now playing</h2>
+      <div class="in">
+        <div class="player">
+          <b>track 06</b><br>untitled, for the car ride
+          <div class="bar"><i></i></div>
+          <small>1:34 / 4:11 &#9654; &#10074;&#10074;</small>
+        </div>
+      </div>
+    </section>
+    <section class="box">
+      <h2>&#9733; top friends</h2>
+      <div class="in friends">
+        <div><div class="pic">&#9733;</div>v.</div>
+        <div><div class="pic">&#9790;</div>ghost_kid</div>
+        <div><div class="pic">&#10023;</div>mara</div>
+        <div><div class="pic">&#10022;</div>rue</div>
+      </div>
+    </section>
+    <section class="box rough" id="links">
+      <h2>&#10023; links</h2>
+      <div class="in"><ul class="plain">
+        <li><a href="#blog">read the blog</a></li>
+        <li><a href="#music">hear the mixtape</a></li>
+        <li><a href="#about">about me</a></li>
+        <li><a href="#guestbook">leave a comment</a></li>
+      </ul></div>
+    </section>
+  </aside>
+
+</div>
+
+<section class="vb-view" id="vision" aria-labelledby="vbTitle">
+  <div class="vb-head">
+    <p class="vb-label">PERSONAL DREAM ARCHIVE &mdash; EST. 2026</p>
+    <h2 id="vbTitle">&#10023; my vision board &#10023;</h2>
+    <p class="vb-sub">dream it. collect it. become it.</p>
+    <p class="vb-desc">a little wall of everything i want to become, everything i dream about, and everything that makes me feel alive.</p>
+    <div class="vb-deco" aria-hidden="true">&#10022; &#9790; &#8224; &#9825; &#9789; &#10022;</div>
+    <button class="vb-btn" id="vbAdd" type="button">+ add a photo</button>
+    <input type="file" id="vbFile" accept="image/jpeg,image/png,image/webp,image/gif" multiple hidden>
+    <p id="vbStatus">0 / 12 dreams collected</p>
+    <p id="vbMsg" role="status" aria-live="polite"></p>
+  </div>
+  <ol class="vb-grid" id="vbGrid" aria-label="vision board photos"></ol>
+  <div class="vb-notes"><span>things i’m manifesting</span><span>future me would be proud</span><span>little reminders of where i’m going</span><span>collecting dreams, one picture at a time</span></div>
+  <p class="vb-back"><a href="#top">&larr; back to my little corner</a></p>
+</section>
+</div>
+
+<footer>
+  <div class="deco" aria-hidden="true">&#10022; &#9733; &#10023; &#9733; &#10022;</div>
+  <a class="fl" href="#top">jesscel.com</a><br>
+  <span>&copy; 2026 jesscel.com</span>
+</footer>
+
+<script>
+(function(){
+  var sky=document.getElementById('sky'),g=['\u2726','\u2605','\u2727','\u00b7','\u2736','\u2729'];
+  for(var i=0;i<34;i++){
+    var s=document.createElement('span');
+    s.textContent=g[i%g.length];
+    s.style.left=(Math.random()*100)+'%';
+    s.style.top=(Math.random()*100)+'%';
+    s.style.fontSize=(8+Math.random()*14)+'px';
+    s.style.setProperty('--dx',(Math.random()*80-40)+'px');
+    s.style.animationDuration=(14+Math.random()*22)+'s';
+    s.style.animationDelay='-'+(Math.random()*30)+'s';
+    sky.appendChild(s);
+  }
+})();
+</script>
+
+<div class="vb-lb" id="vbLb" role="dialog" aria-modal="true" aria-label="vision board photo viewer" hidden>
+  <button class="vb-x" id="vbLbClose" type="button" aria-label="close photo viewer">&times;</button>
+  <button class="vb-ar" id="vbLbPrev" type="button" aria-label="previous photo">&larr;</button>
+  <div class="vb-stage"><img id="vbLbImg" alt=""></div>
+  <button class="vb-ar" id="vbLbNext" type="button" aria-label="next photo">&rarr;</button>
+  <figcaption><div id="vbLbNum">01 / 01</div><div id="vbLbCap"></div></figcaption>
+</div>
+<dialog class="vb-dlg" id="vbDlg" aria-label="add a photo">
+  <form method="dialog">
+    <p id="vbSlotNo"></p>
+    <img id="vbPrev" alt="preview of the photo you chose">
+    <label for="vbCap">caption (optional)</label>
+    <input id="vbCap" maxlength="80" autocomplete="off">
+    <button class="vb-btn" value="ok">save</button> <button class="vb-btn" value="skip">skip</button>
+  </form>
+</dialog>
+<script>
+(function(){
+'use strict';
+var N=12,MAX=8*1024*1024,OK=['image/jpeg','image/png','image/webp','image/gif'];
+var $=function(i){return document.getElementById(i)};
+var grid=$('vbGrid'),input=$('vbFile'),msg=$('vbMsg'),dlg=$('vbDlg'),lb=$('vbLb'),lbImg=$('vbLbImg');
+var items=new Array(N).fill(null),db=null,target=null,drag=-1,lbList=[],lbPos=0,lbOpener=null,tx0=0;
+var say=function(t){msg.textContent=t||''};
+var pad=function(n){return(n<10?'0':'')+n};
+var FAIL='couldn’t save to this browser’s storage (it may be unavailable or full), so this change may disappear when you leave.';
+
+function openDB(){return new Promise(function(res,rej){
+  if(!window.indexedDB){rej(new Error('no idb'));return}
+  var r=indexedDB.open('jesscel-vision-board',1);
+  r.onupgradeneeded=function(){r.result.createObjectStore('slots',{keyPath:'slot'})};
+  r.onsuccess=function(){res(r.result)};r.onerror=function(){rej(r.error)};
+})}
+function tx(mode,fn){return new Promise(function(res,rej){
+  if(!db){rej(new Error('no db'));return}
+  var t=db.transaction('slots',mode),q=fn(t.objectStore('slots'));
+  t.oncomplete=function(){res(q&&q.result)};t.onerror=t.onabort=function(){rej(t.error)};
+})}
+function persist(slots){
+  return Promise.all(slots.map(function(s){var it=items[s];
+    return tx('readwrite',function(st){return it?st.put({slot:s,blob:it.blob,caption:it.caption,added:it.added}):st.delete(s)});
+  })).catch(function(){say(FAIL)});
+}
+function mk(r){return{slot:r.slot,blob:r.blob,caption:r.caption||'',added:r.added,url:URL.createObjectURL(r.blob)}}
+
+function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+function btn(cls,act,label,txt){var b=el('button',cls,txt);b.type='button';b.dataset.act=act;b.setAttribute('aria-label',label);return b}
+
+function render(){
+  grid.textContent='';var n=0;
+  items.forEach(function(it,i){
+    var li=el('li','vb-slot'+(it?' filled':''));li.dataset.slot=i;
+    if(it){n++;li.draggable=true;
+      var o=btn('vb-open','view','view photo '+(i+1)+(it.caption?': '+it.caption:''));
+      var im=new Image();im.src=it.url;im.alt=it.caption||'vision board photo '+(i+1);im.draggable=false;
+      im.onerror=function(){li.classList.add('broken')};
+      o.appendChild(im);li.appendChild(o);
+      li.appendChild(el('span','vb-cap',it.caption||'untitled dream'));
+      var t=el('div','vb-tools');
+      t.appendChild(btn('','caption','edit caption','\u270E'));
+      t.appendChild(btn('','replace','replace photo','\u21BB'));
+      t.appendChild(btn('','delete','delete photo','\u2715'));
+      li.appendChild(t);
+    }else{
+      var e=btn('vb-empty','add','add a photo to slot '+(i+1));
+      e.appendChild(el('b','','+'));e.appendChild(el('span','','\u2727 place a dream here \u2727'));
+      li.appendChild(e);
+    }
+    grid.appendChild(li);
+  });
+  $('vbStatus').textContent=n+' / '+N+' dreams collected';
+}
+
+function pick(slot){target=slot;input.value='';input.click()}
+$('vbAdd').addEventListener('click',function(){
+  if(items.every(Boolean)){say('all 12 slots are full. delete or replace a photo to make room.');return}
+  pick(null);
+});
+
+function ask(f,slot){return new Promise(function(res){
+  var u=URL.createObjectURL(f);
+  $('vbPrev').src=u;$('vbCap').value='';$('vbSlotNo').textContent='going into slot '+(slot+1)+' of '+N;
+  dlg.returnValue='';
+  dlg.addEventListener('close',function(){URL.revokeObjectURL(u);res(dlg.returnValue==='ok'?$('vbCap').value.trim():null)},{once:true});
+  dlg.showModal();$('vbCap').focus();
+})}
+function place(f,slot,cap){
+  if(items[slot])URL.revokeObjectURL(items[slot].url);
+  var r={slot:slot,blob:f,caption:cap,added:new Date().toISOString()};r.url=URL.createObjectURL(f);
+  items[slot]=r;render();return persist([slot]);
+}
+input.addEventListener('change',function(){
+  var ok=[],bad=[];
+  [].slice.call(input.files).forEach(function(f){
+    if(OK.indexOf(f.type)<0)bad.push(f.name+' isn’t a supported image (use jpg, png, webp or gif)');
+    else if(f.size>MAX)bad.push(f.name+' is too big (8 MB max)');
+    else ok.push(f);
+  });
+  var slots=[],t=target;target=null;
+  if(t!==null)slots.push(t);
+  for(var i=0;i<N;i++)if(!items[i]&&slots.indexOf(i)<0)slots.push(i);
+  var notes=[];
+  if(bad.length)notes.push('skipped: '+bad.join('; ')+'.');
+  if(ok.length&&!slots.length)notes.push('all 12 slots are full. delete or replace a photo to make room.');
+  else if(ok.length>slots.length)notes.push('only '+slots.length+' free slot(s), so '+(ok.length-slots.length)+' photo(s) were left out.');
+  say(notes.join(' '));
+  var jobs=ok.slice(0,slots.length),k=0;
+  (function next(){
+    if(k>=jobs.length)return;var f=jobs[k],s=slots[k++];
+    ask(f,s).then(function(cap){return cap===null?null:place(f,s,cap)}).then(next);
+  })();
+});
+
+grid.addEventListener('click',function(e){
+  var b=e.target.closest('button[data-act]');if(!b)return;
+  var i=+b.closest('.vb-slot').dataset.slot,a=b.dataset.act,it=items[i];
+  if(a==='add')pick(i);
+  else if(a==='view')openLb(i,b);
+  else if(a==='replace'){if(confirm('replace this photo with a new one?'))pick(i)}
+  else if(a==='caption'){var c=prompt('caption for this dream:',it.caption);
+    if(c!==null){it.caption=c.trim().slice(0,80);render();refreshLb();persist([i])}}
+  else if(a==='delete'){if(confirm('delete this photo from your board?')){
+    URL.revokeObjectURL(it.url);items[i]=null;render();refreshLb();persist([i])}}
+});
+
+grid.addEventListener('dragstart',function(e){var s=e.target.closest('.vb-slot.filled');if(!s)return;
+  drag=+s.dataset.slot;e.dataTransfer.effectAllowed='move';e.dataTransfer.setData('text/plain',String(drag))});
+grid.addEventListener('dragover',function(e){if(drag>=0&&e.target.closest('.vb-slot'))e.preventDefault()});
+grid.addEventListener('drop',function(e){
+  var s=e.target.closest('.vb-slot');if(!s||drag<0)return;e.preventDefault();
+  var a=drag,b=+s.dataset.slot;drag=-1;if(a===b)return;
+  var tmp=items[a];items[a]=items[b];items[b]=tmp;
+  if(items[a])items[a].slot=a;if(items[b])items[b].slot=b;
+  render();persist([a,b]);
+});
+grid.addEventListener('dragend',function(){drag=-1});
+
+function openLb(slot,opener){
+  lbList=items.filter(Boolean);lbPos=Math.max(0,lbList.indexOf(items[slot]));lbOpener=opener;
+  lb.hidden=false;document.body.style.overflow='hidden';show();$('vbLbClose').focus();
+}
+function show(){
+  var it=lbList[lbPos],one=lbList.length<2;
+  $('vbLbPrev').hidden=one;$('vbLbNext').hidden=one;
+  lbImg.classList.remove('in');lbImg.src=it.url;lbImg.alt=it.caption||'vision board photo';void lbImg.offsetWidth;lbImg.classList.add('in');
+  $('vbLbCap').textContent=it.caption||'from my dreams archive';
+  $('vbLbNum').textContent=pad(lbPos+1)+' / '+pad(lbList.length);
+}
+function step(d){if(!lbList.length)return;lbPos=(lbPos+d+lbList.length)%lbList.length;show()}
+function closeLb(){
+  lb.hidden=true;document.body.style.overflow='';lbImg.removeAttribute('src');
+  var f=lbOpener&&lbOpener.isConnected?lbOpener:grid.querySelector('button');if(f)f.focus();
+}
+function refreshLb(){
+  if(lb.hidden)return;
+  var cur=lbList[lbPos];lbList=items.filter(Boolean);
+  if(!lbList.length){closeLb();return}
+  var p=lbList.indexOf(cur);lbPos=p>=0?p:Math.min(lbPos,lbList.length-1);show();
+}
+$('vbLbClose').addEventListener('click',closeLb);
+$('vbLbPrev').addEventListener('click',function(){step(-1)});
+$('vbLbNext').addEventListener('click',function(){step(1)});
+lb.addEventListener('click',function(e){if(e.target===lb||e.target.classList.contains('vb-stage'))closeLb()});
+lb.addEventListener('touchstart',function(e){tx0=e.changedTouches[0].clientX},{passive:true});
+lb.addEventListener('touchend',function(e){var d=e.changedTouches[0].clientX-tx0;if(Math.abs(d)>50)step(d<0?1:-1)},{passive:true});
+document.addEventListener('keydown',function(e){
+  if(lb.hidden)return;
+  if(e.key==='Escape'){e.preventDefault();closeLb()}
+  else if(e.key==='ArrowLeft')step(-1);
+  else if(e.key==='ArrowRight')step(1);
+  else if(e.key==='Tab'){
+    var f=[].filter.call(lb.querySelectorAll('button'),function(b){return!b.hidden}),a=f[0],z=f[f.length-1];
+    if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}
+    else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}
+  }
+});
+
+function route(){
+  var on=location.hash==='#vision',nv=$('navVision');
+  document.body.classList.toggle('vb-on',on);
+  if(on)nv.setAttribute('aria-current','page');else nv.removeAttribute('aria-current');
+  var id=location.hash.slice(1),t=!on&&id&&$(id);
+  if(t)t.scrollIntoView();else window.scrollTo(0,0);
+}
+window.addEventListener('hashchange',route);route();
+
+render();
+openDB().then(function(d){db=d;return tx('readonly',function(s){return s.getAll()})})
+  .then(function(rows){(rows||[]).forEach(function(r){if(r&&r.slot>=0&&r.slot<N&&r.blob instanceof Blob)items[r.slot]=mk(r)})})
+  .catch(function(){say('this browser can’t store photos, so they’ll only last until you leave this page.')})
+  .then(render);
+})();
+</script>
+</body>
+</html>
